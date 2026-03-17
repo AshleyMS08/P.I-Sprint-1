@@ -1,0 +1,37 @@
+CREATE DATABASE sprint1;
+USE sprint1;
+
+CREATE TABLE monitoramento_painel(
+id INT PRIMARY KEY AUTO_INCREMENT,
+luminosidade DECIMAL(10,2) NOT NULL,
+geracao_esperada DECIMAL(10,2) NOT NULL,
+geracao_atual DECIMAL(10,2) NOT NULL,
+data_hora DATETIME NOT NULL,
+CONSTRAINT chk_luminosidade CHECK (luminosidade BETWEEN 0 AND 1023),
+CONSTRAINT chk_geracao_esperada CHECK (geracao_esperada BETWEEN 0 AND 10),
+CONSTRAINT chk_geracao_atual CHECK (geracao_atual BETWEEN 0 AND 10)
+);
+
+INSERT INTO monitoramento_painel
+(luminosidade, geracao_esperada, geracao_atual, data_hora)
+VALUES
+(800, 3.80, 2.80,'2026-12-05 14:23:00'),
+(290, 5, 4.60,'2026-12-05 14:23:00'),
+(674, 4, 2.10,'2026-12-05 14:23:00'),
+(100, 2.50, 1.60,'2026-12-05 14:23:00'),
+(432, 3, 1.6,'2026-12-05 14:23:00'),
+(898, 4.80, 3,'2026-12-05 14:23:00'),
+(750, 3.70, 2.1,'2026-12-05 14:23:00'),
+(380, 4, 4,'2026-12-05 14:23:00');
+
+SELECT * FROM monitoramento_painel;
+
+SELECT * FROM monitoramento_painel WHERE geracao_esperada = 3;
+
+SELECT luminosidade FROM monitoramento_painel WHERE geracao_atual < 3;
+
+SELECT luminosidade AS 'Luminosidade',
+geracao_esperada AS 'Geração esperada',
+geracao_atual AS 'Geração atual',
+data_hora AS 'Dia e horário'
+FROM monitoramento_painel;

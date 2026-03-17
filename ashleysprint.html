@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar vision</title>
+</head>
+<body>
+    <h2>Calculadora de perda por sujeira</h2>
+    <input type="text" id="ipt_geracao"> Geração mensal (kWh) <br><br>
+    <input type="text" id="ipt_perda"> Perda por sujeira (%) <br><br>
+    <input type="text" id="ipt_valor"> Valor do kWh (R$) <br><br>
+    <button onclick="calcule()">Calcular</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+<script>
+    function calcule(){
+        let geracao = Number(ipt_geracao.value);
+        let perda = Number(ipt_perda.value);
+        let valor = Number(ipt_valor.value);
+
+        let energia = geracao * (perda / 100)
+        let prejuizo = energia * valor
+
+        div_msg.innerHTML = `Você pode estar perdendo ${energia.toFixed(2)} kWh por mês e possuir um prejiozo financeiro de R$ ${prejuizo.toFixed(2)}`
+    }
+</script>
+</html>
